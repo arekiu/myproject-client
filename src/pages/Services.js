@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import CreateService from "../components/CreateService";
  
 const API_URL = "http://localhost:5005/api";
  
@@ -10,8 +11,11 @@ function Services() {
  
   const getAllServices = () => {
     axios
-      .get(`${API_URL}/products`)
-      .then((response) => setServices(response.data))
+      .get(`${API_URL}/services`)
+      
+      .then((response) => {
+        console.log("LOS SERVICIOS SON:" ,  response.data)
+        setServices(response.data)})
       .catch((error) => console.log(error));
   };
  
@@ -23,7 +27,12 @@ function Services() {
  
   
   return (
+
+
+
     <div className="Services">
+
+    <CreateService/>
       
         {services.map((service) => {
           return (
