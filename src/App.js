@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom"; // <== IMPORT
  
 import Navbar from "./components/Navbar";     
 import HomePage from "./pages/HomePage";     
-import Services from "./pages/Services";
+import Services from "./pages/ServicesPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import CreateService from "./components/CreateService"; 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import ScissorImage from "../images/scissor.png"
     
     const API_URL = "http://localhost:5005";
     
@@ -9,7 +10,7 @@ import axios from "axios";
         const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
         const [name, setName] = useState("");
-        const [phoneNumber, setPhoneNumber] = useState(0);
+        const [phoneNumber, setPhoneNumber] = useState("");
         const [errorMessage, setErrorMessage] = useState(undefined);
         
         const navigate = useNavigate();
@@ -41,48 +42,46 @@ import axios from "axios";
         
         return (
             <div className="SignupPage">
-            <h1>Sign Up</h1>
+            <h1>Create an account</h1>
         
-            <form onSubmit={handleSignupSubmit}>
-                <label>Email:</label>
-                <input 
-                type="email"
-                name="email"
-                value={email}
-                onChange={handleEmail}
-                />
-        
-                <label>Password:</label>
-                <input 
-                type="password"
-                name="password"
-                value={password}
-                onChange={handlePassword}
-                />
-        
-                <label>Name:</label>
-                <input 
-                type="text"
-                name="name"
-                value={name}
-                onChange={handleName}
-                />
+            <div className="signup-content">
+            <div className="div-form">
+            <form className="sign-form" onSubmit={handleSignupSubmit}>
 
+                <div className="form-element">
+                <label>Name:</label>
+                <input type="text" name="name" value={name} onChange={handleName}/>
+                </div>
+                
+                <div className="form-element">
+                <label>Email:</label>
+                <input type="email" name="email" value={email} onChange={handleEmail}/>
+                </div>
+
+                <div className="form-element">
                 <label>Phone number:</label>
-                <input 
-                type="text"
-                name="phoneNumber"
-                value={phoneNumber}
-                onChange={handlePhoneNumber}
-                />
-        
-                <button type="submit">Sign Up</button>
+                <input type="text" name="phoneNumber" value={phoneNumber} onChange={handlePhoneNumber}/>
+                </div>
+
+                <div className="form-element">
+                <label>Password:</label>
+                <input type="password" name="password" value={password} onChange={handlePassword}/>
+                </div>
+                <button className="button-form" type="submit">Sign Up</button>
             </form>
         
             { errorMessage && <p className="error-message">{errorMessage}</p> }
         
             <p>Already have account?</p>
-            <Link to={"/login"}> Login</Link>
+            <Link className="links" to={"/login"}> Login</Link>
+            
+            </div>
+
+            <div className="div-image">
+            <img src={ScissorImage} alt="scissors"/>   
+            </div> 
+
+            </div>
             </div>
         )
     }

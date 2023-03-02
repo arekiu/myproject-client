@@ -37,9 +37,12 @@ function Services() {
         {services.map((service) => {
           return (
             <div  key={service._id} >
-              <Link to={`/services/${service._id}`}>
+              
                 <h3>{service.name}</h3>
-              </Link>
+                <p>{service.description}</p>
+                <h4>{service.price}</h4>
+                <button>Add</button>
+              
             </div>
           );
         })}     

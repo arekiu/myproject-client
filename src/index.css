@@ -1,13 +1,126 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+/* styles for the NAVBAR */
+
+.nav-link{
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+  padding-right: 20px;
+}
+
+.nav-link:hover{
+  color: rgb(102, 67, 37);
+  text-decoration: underline;
+  text-underline-offset: 0.4rem;
+}
+
+nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
+.divider{
+  width: 70%;
+}
+
+/* styles for the HOME */
+.img-logo{ 
+  width: 500px;
+}
+
+/* styles for the SIGN UP */
+
+
+.SignupPage>h1, .LoginPage>h1{
+  font-size: 1.5rem;
+  color: rgb(102, 67, 37);
+  text-decoration: underline;
+  text-underline-offset: 0.4rem;
+
+}
+
+.sign-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px auto;
+  max-width: 300px;
+  background: white;
+  border-radius: 4px;
+  
+}
+
+.form-element{
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 100%;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #999;
+  padding: 6px 30px;
+  box-sizing: border-box;
+}
+
+.button-form{
+  background-color: rgb(102, 67, 37);
+  color: white;
+  width: 100px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.button-form:hover{
+  background-color: black;
+}
+
+.links{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.links:hover{
+  color: rgb(102, 67, 37);
+}
+
+.signup-content{
+  display: flex;
+}
+
+.div-form{
+  width: 50%;
+  padding-left: 10%;
+}
+
+.div-image{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.div-image>img{
+  width: 70%;
+  padding-right: 25%;
+}
+
+.div-form-login{
+  padding-top: 50px;
+}
+
+.LoginPage button{
+  margin-top: 10px;
 }

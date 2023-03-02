@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import Scissor2Image from "../images/scissors2.png"
     
     const API_URL = "http://localhost:5005";
     
@@ -42,31 +43,31 @@ import { AuthContext } from "../context/auth.context";
         
         return (
             <div className="LoginPage">
-            <h1>Login</h1>
-        
-            <form onSubmit={handleLoginSubmit}>
+            <h1>Log in</h1>
+
+            <div className="signup-content">
+            
+            <div className="div-form div-form-login">
+            <form className="sign-form" onSubmit={handleLoginSubmit}>
                 <label>Email:</label>
-                <input 
-                type="email"
-                name="email"
-                value={email}
-                onChange={handleEmail}
-                />
+                <input type="email" name="email" value={email} onChange={handleEmail}/>
         
                 <label>Password:</label>
-                <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={handlePassword}
-                />
+                <input type="password" name="password" value={password} onChange={handlePassword}/>
         
-                <button type="submit">Login</button>
+                <button className="button-form" type="submit">Login</button>
             </form>
             { errorMessage && <p className="error-message">{errorMessage}</p> }
         
             <p>Don't have an account yet?</p>
-            <Link to={"/signup"}> Sign Up</Link>
+            <Link className="links" to={"/signup"}> Sign Up</Link>
+            </div>
+
+            <div className="div-image">
+            <img src={Scissor2Image} alt="scissors"/>   
+            </div> 
+
+            </div>
             </div>
         )
     }

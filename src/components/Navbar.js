@@ -1,35 +1,42 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";                     
 import { AuthContext } from "../context/auth.context";
+import divider from "../images/divider.png"
  
 function Navbar() {
 
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
     return (
-        <nav>
-          <Link to="/">
-            <button>Home</button>
-          </Link>
+      <div className="nav-component">
 
-          {isLoggedIn && (
-            <>
-              <Link to="/services">
-                <button>Services</button>
-              </Link>        
-              
-              <button onClick={logOutUser}>Logout</button>
-              <span>{user && user.name}</span>
-            </>
-          )}
+          <nav>
+            <Link className="nav-link" to="/">Home</Link>
 
-          {!isLoggedIn && (
-            <>
-              <Link to="/signup"> <button>Sign Up</button> </Link>
-              <Link to="/login"> <button>Login</button> </Link>
-            </>
-          )}
-        </nav>
+            <Link className="nav-link" to="/">About us</Link>
+
+            {isLoggedIn && (
+              <>
+                <Link className="nav-link" to="/services">Book</Link>  
+
+                <Link className="nav-link" onClick={logOutUser}>Logout</Link>
+
+
+                {/* <span>{user.name}</span> */}
+              </>
+            )}
+
+            {!isLoggedIn && (
+              <>
+                <Link className="nav-link" to="/signup"> Sign Up </Link>
+                <Link className="nav-link" to="/login"> Login </Link>
+              </>
+            )}
+          </nav>
+
+            <img className="divider" src={divider} alt="" />
+
+        </div>
       );
     }
  
