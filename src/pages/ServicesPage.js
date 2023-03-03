@@ -24,29 +24,49 @@ function Services() {
   useEffect(() => {
     getAllServices();
   }, [] );
+
+
+  // const handleOrder = (e) => {
+  //   e.preventDefault();
+  //   const requestBody = { total, user_id: user[0]._id, order_items, date };
+  //   console.log("este es el id del deck", user[0]._id);
+  //   axios.post(`${API_URL}/orders`, requestBody).then((response) => {
+  //     console.log(response.data);
+  //   });
+    
+  // };
  
   
   return (
 
 
-
     <div className="Services">
 
-    <CreateService/>
+    <CreateService getAllServices={getAllServices} />
       
         {services.map((service) => {
           return (
-            <div  key={service._id} >
+            <div  className="service-card" key={service._id} >
               
+              <div className="card">
+
+              <div className="card-head">
+              <img src={service.image} alt="haircut"/> 
                 <h3>{service.name}</h3>
+                </div>
+
+                <div className="card-body">
                 <p>{service.description}</p>
                 <h4>{service.price}</h4>
-                <button>Add</button>
+                {/* <button onChange={handleOrder}>Add</button> */}
+                </div>
+
+                </div>
               
             </div>
           );
         })}     
-       
+      
     </div>
   );
 }
