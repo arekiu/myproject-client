@@ -8,6 +8,12 @@ function AuthProviderWrapper(props) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
+
+    const handleLogout = () => {
+      localStorage.removeItem(`orderItems_${user._id}`);
+      localStorage.removeItem(`timeslot_${user._id}`);
+      localStorage.removeItem(`date_${user._id}`);
+    }
     
     const storeToken = (token) => {    
       localStorage.setItem('authToken', token);
@@ -59,6 +65,8 @@ function AuthProviderWrapper(props) {
       removeToken();
       // and update the state variables    
       authenticateUser();
+
+      handleLogout()
     } 
 
     useEffect(() => {                                    

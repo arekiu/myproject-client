@@ -162,3 +162,66 @@ input {
 .card-body h4 {
   margin: 7px;
 }
+
+
+/* CALENDARRRRRR */
+
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+}
+
+.date {
+  flex-basis: calc(100% / 7);
+  box-sizing: border-box;
+  padding: 5px;
+  height: 70px;
+  border: 1px solid #ccc;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: #eee;
+  z-index: 1;
+}
+
+.day .header .day {
+  font-weight: bold;
+}
+
+.day .header .month {
+  font-size: 0.8em;
+}
+
+.day .header .number {
+  font-size: 1.2em;
+}
+
+.time-slots {
+  margin-top: 10px;
+  display: none;
+  position: absolute;
+  z-index: 2;
+  background-color: aqua;
+}
+
+.date:hover .time-slots {
+  display: block;
+}
+
+.time-slot {
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* .time-slot.selected {
+  background-color: yellow;
+  cursor: not-allowed;
+} */

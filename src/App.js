@@ -9,6 +9,7 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import IsPrivate from "./components/IsPrivate";
 import OrderPage from "./pages/OrderPage";
+import BookTimeSlot from "./components/BookTimeSlot";
 
 const API_URL = "http://localhost:5005/api";
 
@@ -42,7 +43,7 @@ function App() {
 };
 
 const handleRemoveItem = (item)=>{
-  if(orderItems.lenght>1){
+  if(orderItems.length>1){
   setOrderItems(orderItems.splice(orderItems.indexOf(item.id)))}
   else{
     setOrderItems([])
@@ -66,7 +67,8 @@ const handleRemoveItem = (item)=>{
         <Route path="/services" element={ <IsPrivate><Services services={services} 
         getAllServices={getAllServices} handleAddItem={handleAddItem} 
         handleRemoveItem={handleRemoveItem} orderItems={orderItems}/> </IsPrivate>} />
-        <Route path="/order" element={<IsPrivate><OrderPage orderItems={orderItems} /> </IsPrivate>}/> 
+        <Route path="/order" element={<IsPrivate> <BookTimeSlot/> <OrderPage orderItems={orderItems} /> </IsPrivate>}/> 
+        
       
       </Routes>
 

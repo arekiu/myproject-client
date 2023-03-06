@@ -1,14 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import axios from "axios";
 import { Routes, Route,Link, Router } from "react-router-dom";
 import CreateService from "../components/CreateService";
+import { AuthContext } from "../context/auth.context";
 
  
 const API_URL = "http://localhost:5005/api";
  
  
 function Services({services, getAllServices,handleAddItem,orderItems,handleRemoveItem}) {
+
+  const { user} = useContext(AuthContext);
  
+
+
+  function handleGoToOrderPage() {
+    localStorage.setItem(`orderItems_${user._id}`, JSON.stringify(orderItems));
+  }
+
   
   return (
 
@@ -43,7 +52,7 @@ function Services({services, getAllServices,handleAddItem,orderItems,handleRemov
             
           );
         })}     
-       <Link to="/order" state={{ orderItems }}>Go to Order Page</Link>
+       <Link to="/order" onClick={handleGoToOrderPage} >Go to Order Page</Link>
     </div>
   );
 }
