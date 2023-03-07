@@ -9,12 +9,13 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import IsPrivate from "./components/IsPrivate";
 import OrderPage from "./pages/OrderPage";
+import EditServicesPage from "./pages/EditServicesPage"
 
 const API_URL = "http://localhost:5005/api";
 
  
 function App() {
-  const [services, setServices] = useState([]);
+  let [services, setServices] = useState([]);
   const [orderItems,setOrderItems] = useState([])
 
   const storedToken = localStorage.getItem("authToken");
@@ -51,6 +52,8 @@ const handleRemoveItem = (item)=>{
 
 
 
+
+
   useEffect(() => {
     console.log("LOSSS ITEMSSSS",orderItems);
   }, [orderItems]);
@@ -69,6 +72,7 @@ const handleRemoveItem = (item)=>{
         getAllServices={getAllServices} handleAddItem={handleAddItem} 
         handleRemoveItem={handleRemoveItem} orderItems={orderItems}/> </IsPrivate>} />
         <Route path="/order" element={<IsPrivate> <OrderPage orderItems={orderItems} /> </IsPrivate>}/> 
+        <Route path="editservices/:serviceId" element={<EditServicesPage  services={services}/> }/>
         
       
       </Routes>

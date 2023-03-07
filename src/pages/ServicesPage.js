@@ -34,7 +34,10 @@ function Services({services, getAllServices,handleAddItem,orderItems,handleRemov
 
               <div className="card-head">
               <img src={service.image} alt="haircut"/> 
-                <h3>{service.name}</h3>
+              <Link to={`/editservices/${service._id}`}>
+              <h3>{service.name}</h3>
+            </Link>
+                
                 </div>
 
                 <div className="card-body">
