@@ -206,7 +206,7 @@ input {
   display: none;
   position: absolute;
   z-index: 2;
-  background-color: aqua;
+  background-color: white;
 }
 
 .date:hover .time-slots {

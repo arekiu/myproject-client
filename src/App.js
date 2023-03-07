@@ -9,7 +9,6 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import IsPrivate from "./components/IsPrivate";
 import OrderPage from "./pages/OrderPage";
-import BookTimeSlot from "./components/BookTimeSlot";
 
 const API_URL = "http://localhost:5005/api";
 
@@ -50,6 +49,8 @@ const handleRemoveItem = (item)=>{
   }
 }
 
+
+
   useEffect(() => {
     console.log("LOSSS ITEMSSSS",orderItems);
   }, [orderItems]);
@@ -67,7 +68,7 @@ const handleRemoveItem = (item)=>{
         <Route path="/services" element={ <IsPrivate><Services services={services} 
         getAllServices={getAllServices} handleAddItem={handleAddItem} 
         handleRemoveItem={handleRemoveItem} orderItems={orderItems}/> </IsPrivate>} />
-        <Route path="/order" element={<IsPrivate> <BookTimeSlot/> <OrderPage orderItems={orderItems} /> </IsPrivate>}/> 
+        <Route path="/order" element={<IsPrivate> <OrderPage orderItems={orderItems} /> </IsPrivate>}/> 
         
       
       </Routes>
