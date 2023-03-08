@@ -61,8 +61,8 @@ const handleEditSubmit = (e) => {
 
     axios
       .delete(
-        `${API_URL}/api/editservices/${serviceId}`,
-        // { headers: { Authorization: `Bearer ${storedToken}` } }
+        `${API_URL}/api/services/${serviceId}`,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
       )       
       .then(() => navigate("/services"))
       .catch((err) => console.log(err));
