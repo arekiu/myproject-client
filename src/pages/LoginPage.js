@@ -49,11 +49,15 @@ import Scissor2Image from "../images/scissors2.png"
             
             <div className="div-form div-form-login">
             <form className="sign-form" onSubmit={handleLoginSubmit}>
+                <div className="form-element">
                 <label>Email:</label>
                 <input type="email" name="email" value={email} onChange={handleEmail}/>
-        
+                </div>
+
+                <div className="form-element">
                 <label>Password:</label>
                 <input type="password" name="password" value={password} onChange={handlePassword}/>
+                </div>
         
                 <button className="button-form" type="submit">Login</button>
             </form>

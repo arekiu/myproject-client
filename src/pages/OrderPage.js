@@ -8,8 +8,9 @@ const API_URL = "http://localhost:5005/api";
 
 function OrderPage() {
 
-    // const [unavailable, setUnavailable] = useState([])
+    
     const { user} = useContext(AuthContext);
+    const storedToken = localStorage.getItem("authToken");
     
     const storedTimeSlot = localStorage.getItem(`timeslot_${user._id}`);
     const appointmentTime = storedTimeSlot ? JSON.parse(storedTimeSlot) : undefined;
@@ -23,6 +24,7 @@ function OrderPage() {
 
     const [selectedDate, setSelectedDate] = useState("");
     const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
+    const [unavailable, setUnavailable] = useState([])
 
 
   const handleSelect = (date, timeSlot) => {
@@ -50,12 +52,26 @@ function OrderPage() {
     })
 };
 
+const getUnavailable = () => {
+  axios
+    .get(`${API_URL}/appointment`,
+    { headers: { Authorization: `Bearer ${storedToken}` } })
+    
+    .then((response) => {
+      console.log("Unavailable appointments:" ,  response.data)
+      setUnavailable(response.data)})
+    .catch((error) => console.log(error));
+};
+
+useEffect(() => {
+  getUnavailable();
+}, [] );
 
 
-console.log(typeof selectedDate)
 
-
-console.log("EL TURNOOO ESSSSS: ",selectedDate,selectedTimeSlot)
+// console.log("PATAAAAA", unavailable[0])
+//  console.log("CHEEEEEEEE", unavailable[0].unavailable[0].selectedDate.slice(0,10))
+// console.log("EL TURNOOO ESSSSS: ",selectedDate,selectedTimeSlot)
 
 
   const timeSlots = [
@@ -78,11 +94,10 @@ console.log("EL TURNOOO ESSSSS: ",selectedDate,selectedTimeSlot)
   }
 
 
-
-
     return ( 
         <div>
-
+          {unavailable.length > 0 && (
+<div>
 <div className="calendar">
       {days.map(({ date, day, month, number }) => (
         <div key={date} className="date">
@@ -98,13 +113,18 @@ console.log("EL TURNOOO ESSSSS: ",selectedDate,selectedTimeSlot)
           <div className="time-slots">
             {timeSlots.map((timeSlot) => (
               <div
-                key={timeSlot}
+                 key={timeSlot}
                 className={`time-slot ${
-                  selectedDate === date && selectedTimeSlot === timeSlot
-                    ? "selected"
-                    : ""
+                    // unavailable.appointmentDate === date && unavailable.appointmentTime === timeSlot
+                  
+                  unavailable[0].unavailable.some(object =>
+                    // console.log(date.toISOString().slice(0,10),unavailable[0].unavailable[0].selectedDate.slice(0,10) )
+                 object.selectedDate.slice(0,10) === date.toISOString().slice(0,10) && object.selectedTimeSlot === timeSlot
+                )
+                     ? "selected"
+                     : ""
                 }`}
-                onClick={() => {handleSelect(date, timeSlot);handleStoringBooking(date, timeSlot)}}
+                 onClick={() => {handleSelect(date, timeSlot);handleStoringBooking(date, timeSlot)}}
               >
                 {timeSlot}
               </div>
@@ -116,7 +136,7 @@ console.log("EL TURNOOO ESSSSS: ",selectedDate,selectedTimeSlot)
 
 
 
-
+        <div>
               <div className="appointment">
             <h1>Your appointment</h1>
 
@@ -142,9 +162,13 @@ console.log("EL TURNOOO ESSSSS: ",selectedDate,selectedTimeSlot)
 
             <button onClick={() => {storeUnavailableAppointment(appointmentDate, appointmentTime)}}>Confirm Appointment</button>
             </div>
-
+            </div>
+          </div>
+           )} 
         </div>
     );
 }
 
 export default OrderPage;
+
+

@@ -54,17 +54,6 @@ const handleRemoveItem = (item) => {
   }, [orderItems]);
 
 
-  const getUnavailable = () => {
-    axios
-      .get(`${API_URL}/appointment`,
-      { headers: { Authorization: `Bearer ${storedToken}` } })
-      
-      .then((response) => {
-        console.log("Unavailable appointments:" ,  response.data)
-        setServices(response.data)})
-      .catch((error) => console.log(error));
-  };
-
 
   
   return (
