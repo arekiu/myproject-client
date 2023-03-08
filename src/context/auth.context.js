@@ -8,6 +8,7 @@ function AuthProviderWrapper(props) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false)
 
     const handleLogout = () => {
       localStorage.removeItem(`orderItems_${user._id}`);
@@ -37,20 +38,23 @@ function AuthProviderWrapper(props) {
         // Update state variables        
           setIsLoggedIn(true);
           setIsLoading(false);
-          setUser(user);        
+          setUser(user);   
+          setIsAdmin(user.email === "soyadmin@gmail.com"); //set isAdmin to true if this is true     
         })
         .catch((error) => {
           // If the server sends an error response (invalid token) 
           // Update state variables         
           setIsLoggedIn(false);
           setIsLoading(false);
-          setUser(null);        
+          setUser(null);  
+          setIsAdmin(false)      
         });      
       } else {
         // If the token is not available (or is removed)
           setIsLoggedIn(false);
           setIsLoading(false);
-          setUser(null);      
+          setUser(null);    
+          setIsAdmin(false)  
       }   
     }
 
@@ -75,7 +79,7 @@ function AuthProviderWrapper(props) {
 
 
     return (
-      <AuthContext.Provider value={{ isLoggedIn, isLoading, user, storeToken, authenticateUser, logOutUser }}>
+      <AuthContext.Provider value={{ isLoggedIn, isLoading, user, isAdmin, storeToken, authenticateUser, logOutUser }}>
         {props.children}
       </AuthContext.Provider>
     )

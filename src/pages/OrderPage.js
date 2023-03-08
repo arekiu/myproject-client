@@ -1,5 +1,6 @@
 import { useState, useEffect,useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import axios from "axios";
 
 
 const API_URL = "http://localhost:5005/api";
@@ -7,7 +8,7 @@ const API_URL = "http://localhost:5005/api";
 
 function OrderPage() {
 
-
+    // const [unavailable, setUnavailable] = useState([])
     const { user} = useContext(AuthContext);
     
     const storedTimeSlot = localStorage.getItem(`timeslot_${user._id}`);
@@ -39,8 +40,24 @@ function OrderPage() {
   }, [selectedDate, selectedTimeSlot]);
 
 
+  const storeUnavailableAppointment = () => {
+    
+    const requestBody = { selectedDate,selectedTimeSlot};
+
+    axios.post(`${API_URL}/appointment`, requestBody)
+    .then((response) => {
+        console.log("added to unavailable:")
+    })
+};
+
+
+
+console.log(typeof selectedDate)
+
+
 console.log("EL TURNOOO ESSSSS: ",selectedDate,selectedTimeSlot)
-console.log(typeof(selectedDate))
+
+
   const timeSlots = [
     "9:00am - 10:00am",
     "10:00am - 11:00am",
@@ -59,8 +76,6 @@ console.log(typeof(selectedDate))
     const number = date.getDate();
     days.push({ date, day, month, number });
   }
-
-
 
 
 
@@ -102,14 +117,14 @@ console.log(typeof(selectedDate))
 
 
 
-
-            <h1>carrito</h1>
+              <div className="appointment">
+            <h1>Your appointment</h1>
 
             
             {appointmentDate && appointmentTime ? (
-  <h3>Your appointment is on {appointmentDate.slice(5,10)} at {appointmentTime}</h3>
-) : <h3>Selecting date</h3>
-}
+              <h3>Your appointment is on {appointmentDate.slice(5,10)} at {appointmentTime}</h3>
+                ) : <h3>Selecting date</h3>
+            }
 
             {orderItems.length === 0 && (
                 <div>No items </div>
@@ -124,6 +139,10 @@ console.log(typeof(selectedDate))
                     </div>
                 ))}
             </div>
+
+            <button onClick={() => {storeUnavailableAppointment(appointmentDate, appointmentTime)}}>Confirm Appointment</button>
+            </div>
+
         </div>
     );
 }

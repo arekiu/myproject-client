@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import IsPrivate from "./components/IsPrivate";
 import OrderPage from "./pages/OrderPage";
 import EditServicesPage from "./pages/EditServicesPage"
+import AboutUsPage from "./pages/AboutUsPage"
 
 const API_URL = "http://localhost:5005/api";
 
@@ -42,21 +43,28 @@ function App() {
     setOrderItems([...orderItems, { ...item }]);
 };
 
-const handleRemoveItem = (item)=>{
-  if(orderItems.length>1){
-  setOrderItems(orderItems.splice(orderItems.indexOf(item.id)))}
-  else{
-    setOrderItems([])
-  }
-}
-
-
-
+const handleRemoveItem = (item) => {
+  const updatedItems = orderItems.filter((i) => i.id !== item.id);
+  setOrderItems(updatedItems);
+};
 
 
   useEffect(() => {
     console.log("LOSSS ITEMSSSS",orderItems);
   }, [orderItems]);
+
+
+  const getUnavailable = () => {
+    axios
+      .get(`${API_URL}/appointment`,
+      { headers: { Authorization: `Bearer ${storedToken}` } })
+      
+      .then((response) => {
+        console.log("Unavailable appointments:" ,  response.data)
+        setServices(response.data)})
+      .catch((error) => console.log(error));
+  };
+
 
   
   return (
@@ -66,6 +74,7 @@ const handleRemoveItem = (item)=>{
  
       <Routes>      
         <Route path="/" element={ <HomePage /> } />
+        <Route path="/aboutus" element={<AboutUsPage/>}/>
         <Route path="/signup" element={ <SignupPage /> } />
         <Route path="/login" element={ <LoginPage /> } />
         <Route path="/services" element={ <IsPrivate><Services services={services} 

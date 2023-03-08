@@ -6,7 +6,7 @@ const API_URL = "http://localhost:5005";
     
 function EditServicesPAge({services}) {
         const [name, setName] = useState("");
-        const [price, setPrice] = useState(0);
+        const [price, setPrice] = useState("");
         const [description, setDescription] = useState("");
 
         const [errorMessage, setErrorMessage] = useState(undefined);

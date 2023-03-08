@@ -127,22 +127,29 @@ input {
   margin-top: 10px;
 }
 
-/* CARDS WITH INFORMATION */
+/* SERVICES PAGE */
 
 .Services {
   height: 100vh;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
+
+.services-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/* CARDS WITH INFORMATION */
 
 .card {
   position: relative;
   background: white;
   border: 3px solid ;
   box-shadow: 1px 1px 4px rgba(dark-color, 0.3);
-  max-width: 250px;
+  width: 250px;
   height: 350px;
   display: flex;
   flex-direction: column;
@@ -221,7 +228,36 @@ input {
   z-index: 3;
 }
 
-/* .time-slot.selected {
-  background-color: yellow;
+ .time-slot.selected {
+  background-color: red;
   cursor: not-allowed;
-} */
+} 
+
+
+/* ABOUT US PAGE */
+
+.aboutus{
+  display: flex;
+  align-items: center;
+  padding: 5vh 15vw;
+}
+.aboutus img{
+  width: 25vw;
+  border-radius: 10%;
+}
+
+.aboutus p{
+  padding: 20px;
+}
+
+.aboutus-text{
+  border-style: solid;
+  border-width: 3px;
+  border-color: rgb(102, 67, 37);
+  border-radius: 10px;
+  margin-right: 5vw;
+}
+
+.aboutus-text span{
+  font-weight: bold;
+}

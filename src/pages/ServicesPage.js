@@ -10,7 +10,7 @@ const API_URL = "http://localhost:5005/api";
  
 function Services({services, getAllServices,handleAddItem,orderItems,handleRemoveItem}) {
 
-  const { user} = useContext(AuthContext);
+  const { user, isAdmin} = useContext(AuthContext);
  
 
 
@@ -23,9 +23,13 @@ function Services({services, getAllServices,handleAddItem,orderItems,handleRemov
 
     <div className="Services">
 
-
+    <div className="createservice-container">
+{isAdmin && (
     <CreateService getAllServices={getAllServices} />
+)}
+  </div>
       
+      <div className="services-container">
         {services.map((service) => {
           return (
             <div  className="service-card" key={service._id} >
@@ -34,19 +38,28 @@ function Services({services, getAllServices,handleAddItem,orderItems,handleRemov
 
               <div className="card-head">
               <img src={service.image} alt="haircut"/> 
-              <Link to={`/editservices/${service._id}`}>
+
+             
               <h3>{service.name}</h3>
-            </Link>
+           
                 
                 </div>
 
                 <div className="card-body">
                 <p>{service.description}</p>
                 <h4>{service.price}</h4>
-
+                
+                {isAdmin && (
+              <Link to={`/editservices/${service._id}`}>
+                <button>Edit</button>
+                </Link>
+            )}
+                {!isAdmin && (
+                  <div>
                 <button onClick={() =>handleAddItem(service)}>Add</button>
                 <button onClick={() =>handleRemoveItem(service)}>Remove</button>
-        
+                </div>
+                )}
                 </div>
 
                 </div>
@@ -54,8 +67,10 @@ function Services({services, getAllServices,handleAddItem,orderItems,handleRemov
             </div>
             
           );
-        })}     
+        })}  
+        </div>   
        <Link to="/order" onClick={handleGoToOrderPage} >Go to Order Page</Link>
+       
     </div>
   );
 }

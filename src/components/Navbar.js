@@ -13,7 +13,7 @@ function Navbar() {
           <nav>
             <Link className="nav-link" to="/">Home</Link>
 
-            <Link className="nav-link" to="/">About us</Link>
+            <Link className="nav-link" to="/aboutus">About us</Link>
 
             {isLoggedIn && (
               <>
