@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Routes, Route,Link, Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CreateService from "../components/CreateService";
 import { AuthContext } from "../context/auth.context";
 
@@ -29,12 +29,24 @@ function Services({services, getAllServices, handleAddItem, orderItems, handleRe
 
   return (
     <div className="Services">
+
+                  {isAdmin && (
+                    <Link className="links" to="/order" onClick={handleGoToOrderPage}>
+                    Edit Calendar
+                  </Link>
+                  )}
+
+      {!isAdmin && (            
+      <h2>Select your service and then <br/> book your time slot <Link className="links" to="/order" onClick={handleGoToOrderPage}>
+          HERE
+      </Link></h2>
+      )}
       <div className="createservice-container">
         {isAdmin && <CreateService getAllServices={getAllServices} />}
       </div>
 
       <div className="services-container">
-        {services.map((service, index) => {
+        {services?.map((service, index) => {
           const isSelected = selectedServices.includes(service);
           return (
             <div className="service-card" key={service._id}>
@@ -58,7 +70,7 @@ function Services({services, getAllServices, handleAddItem, orderItems, handleRe
 
                   {!isAdmin && (
                     <div>
-                      <button className={isSelected ? "buttonselected" : ""} onClick={() => handleServiceSelection(service)}>
+                      <button className={`card-button ${isSelected ? "buttonselected" : ""}`} onClick={() => handleServiceSelection(service)}>
                     {isSelected ? "Remove" : "Add"}
                   </button>
                     </div>
@@ -69,9 +81,7 @@ function Services({services, getAllServices, handleAddItem, orderItems, handleRe
           );
         })}
       </div>
-      <Link to="/order" onClick={handleGoToOrderPage}>
-        Go to Order Page
-      </Link>
+      
     </div>
   );
 }

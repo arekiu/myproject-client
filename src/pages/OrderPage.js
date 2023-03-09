@@ -43,7 +43,6 @@ function OrderPage() {
 
 
   const storeUnavailableAppointment = () => {
-    
     const requestBody = { selectedDate,selectedTimeSlot};
 
     axios.post(`${API_URL}/appointment`, requestBody)
@@ -51,6 +50,13 @@ function OrderPage() {
         console.log("added to unavailable:")
     })
 };
+
+const storeBooking = () => {
+  
+  const requestBody = { orderItems, selectedDate,selectedTimeSlot, userId: user._id };
+  axios.post(`${API_URL}/booking`, requestBody).then(() => {});
+};
+
 
 const getUnavailable = () => {
   axios
@@ -124,7 +130,8 @@ useEffect(() => {
                 ))}
             </div>
 
-            <button onClick={() => {storeUnavailableAppointment(appointmentDate, appointmentTime)}}>Confirm Appointment</button>
+            <button onClick={() => {storeUnavailableAppointment(appointmentDate, appointmentTime);
+                  storeBooking(orderItems, selectedDate,selectedTimeSlot)}}>Confirm Appointment</button>
             
             </div>
             </>

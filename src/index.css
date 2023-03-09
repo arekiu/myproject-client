@@ -164,6 +164,9 @@ input {
   color: rgb(102, 67, 37);
 }
 
+.Services .links {
+  font-size: 1.4rem;
+}
 
 /* CARDS WITH INFORMATION */
 
@@ -224,6 +227,18 @@ input {
 .card-body h4 {
   margin: 7px;
 }
+
+.card-button {
+  background-color: rgb(102, 67, 37) ;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1rem;
+}
+
+
+
 
 .buttonselected {
   filter: none;
