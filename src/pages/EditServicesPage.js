@@ -26,8 +26,7 @@ function EditServicesPAge({services}) {
               )
 
                 // GET /api/editservices/:id
-      
-        
+
             
               .then((response) => {
                 const oneService = response.data;

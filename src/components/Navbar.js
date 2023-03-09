@@ -1,25 +1,34 @@
-import { Link } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 import { useContext } from "react";                     
 import { AuthContext } from "../context/auth.context";
 import divider from "../images/divider.png"
  
 function Navbar() {
 
-    const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+    const { isLoggedIn, isAdmin, logOutUser } = useContext(AuthContext);
 
     return (
       <div className="nav-component">
 
           <nav>
-            <Link className="nav-link" to="/">Home</Link>
+            <NavLink className="nav-link" to="/">Home</NavLink>
 
-            <Link className="nav-link" to="/aboutus">About us</Link>
+            {!isAdmin && (
+            <>
+            <NavLink className="nav-link" to="/aboutus">About us</NavLink>
+
+            <NavLink className="nav-link" to="/services">Book</NavLink>  
+            </>
+            )}
+
+            {isAdmin && (
+              <NavLink className="nav-link" to="/services">Edit </NavLink>  
+            )}
 
             {isLoggedIn && (
               <>
-                <Link className="nav-link" to="/services">Book</Link>  
 
-                <Link className="nav-link" onClick={logOutUser}>Logout</Link>
+                <Link className="nav-link" onClick={logOutUser}>Log out</Link>
 
 
                 {/* <span>{user.name}</span> */}
@@ -28,8 +37,8 @@ function Navbar() {
 
             {!isLoggedIn && (
               <>
-                <Link className="nav-link" to="/signup"> Sign Up </Link>
-                <Link className="nav-link" to="/login"> Login </Link>
+                <NavLink className="nav-link" to="/signup"> Sign up </NavLink>
+                <NavLink className="nav-link" to="/login"> Log in </NavLink>
               </>
             )}
           </nav>

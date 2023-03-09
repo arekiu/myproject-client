@@ -42,7 +42,6 @@ import ScissorImage from "../images/scissor.png"
         
         return (
             <div className="SignupPage">
-            <h1>Create an account</h1>
         
             <div className="signup-content">
             <div className="div-form">
@@ -67,13 +66,13 @@ import ScissorImage from "../images/scissor.png"
                 <label>Password:</label>
                 <input type="password" name="password" value={password} onChange={handlePassword}/>
                 </div>
-                <button className="button-form" type="submit">Sign Up</button>
+                <button className="button-form" type="submit">Sign up</button>
             </form>
         
             { errorMessage && <p className="error-message">{errorMessage}</p> }
         
             <p>Already have account?</p>
-            <Link className="links" to={"/login"}> Login</Link>
+            <Link className="links" to={"/login"}> Log in</Link>
             
             </div>
 

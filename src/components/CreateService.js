@@ -58,7 +58,7 @@ import axios from "axios";
         
         return (
             <div className="CreateService">
-            <h1>Create service</h1>
+            <h1>Create or Edit service</h1>
         
             <form onSubmit={handleCreateServiceSubmit}>
                 <label>Name:</label>

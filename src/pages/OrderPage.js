@@ -9,7 +9,7 @@ const API_URL = "http://localhost:5005/api";
 function OrderPage() {
 
     
-    const { user} = useContext(AuthContext);
+    const { user,isAdmin} = useContext(AuthContext);
     const storedToken = localStorage.getItem("authToken");
     
     const storedTimeSlot = localStorage.getItem(`timeslot_${user._id}`);
@@ -95,9 +95,62 @@ useEffect(() => {
 
 
     return ( 
-        <div>
+        <div className="Appointment">
           {unavailable.length > 0 && (
-<div>
+
+
+      <div>
+        {!isAdmin && (
+              <>
+              <div className="selected-time">
+            <h1>Your appointment</h1>
+
+            
+            {appointmentDate && appointmentTime ? (
+              <h3>Your appointment is on {appointmentDate.slice(5,10)} at {appointmentTime}</h3>
+                ) : <h3>Selecting date</h3>
+            }
+
+            {orderItems.length === 0 && (
+                <div>No items </div>
+            ) }
+
+            <div>
+                {orderItems.map((item)=>(
+                    <div key={item._id}>
+                        <h3>{item.name}</h3>
+                        <p>Price: {item.price}</p>
+                    </div>
+                ))}
+            </div>
+
+            <button onClick={() => {storeUnavailableAppointment(appointmentDate, appointmentTime)}}>Confirm Appointment</button>
+            
+            </div>
+            </>
+            )}
+
+{isAdmin && (
+              <>
+              <div className="selected-time">
+            <h1>Set unavailabilies</h1>
+
+            
+            {appointmentDate && appointmentTime ? (
+              <h3>Time-slot on {appointmentDate.slice(5,10)} at {appointmentTime}</h3>
+                ) : <h3>Selecting date</h3>
+            }
+
+            <button className="button-red" onClick={() => {storeUnavailableAppointment(appointmentDate, appointmentTime)}}>Set unavailable</button>
+            
+            </div>
+            </>
+            )}
+            
+
+
+
+
 <div className="calendar">
       {days.map(({ date, day, month, number }) => (
         <div key={date} className="date">
@@ -115,10 +168,8 @@ useEffect(() => {
               <div
                  key={timeSlot}
                 className={`time-slot ${
-                    // unavailable.appointmentDate === date && unavailable.appointmentTime === timeSlot
                   
                   unavailable[0].unavailable.some(object =>
-                    // console.log(date.toISOString().slice(0,10),unavailable[0].unavailable[0].selectedDate.slice(0,10) )
                  object.selectedDate.slice(0,10) === date.toISOString().slice(0,10) && object.selectedTimeSlot === timeSlot
                 )
                      ? "selected"
@@ -136,33 +187,6 @@ useEffect(() => {
 
 
 
-        <div>
-              <div className="appointment">
-            <h1>Your appointment</h1>
-
-            
-            {appointmentDate && appointmentTime ? (
-              <h3>Your appointment is on {appointmentDate.slice(5,10)} at {appointmentTime}</h3>
-                ) : <h3>Selecting date</h3>
-            }
-
-            {orderItems.length === 0 && (
-                <div>No items </div>
-            ) }
-
-
-            <div>
-                {orderItems.map((item)=>(
-                    <div key={item._id}>
-                        <h3>{item.name}</h3>
-                        <p>Price: {item.price}</p>
-                    </div>
-                ))}
-            </div>
-
-            <button onClick={() => {storeUnavailableAppointment(appointmentDate, appointmentTime)}}>Confirm Appointment</button>
-            </div>
-            </div>
           </div>
            )} 
         </div>

@@ -43,7 +43,6 @@ import Scissor2Image from "../images/scissors2.png"
         
         return (
             <div className="LoginPage">
-            <h1>Log in</h1>
 
             <div className="signup-content">
             
@@ -59,12 +58,12 @@ import Scissor2Image from "../images/scissors2.png"
                 <input type="password" name="password" value={password} onChange={handlePassword}/>
                 </div>
         
-                <button className="button-form" type="submit">Login</button>
+                <button className="button-form" type="submit">Log in</button>
             </form>
             { errorMessage && <p className="error-message">{errorMessage}</p> }
         
             <p>Don't have an account yet?</p>
-            <Link className="links" to={"/signup"}> Sign Up</Link>
+            <Link className="links" to={"/signup"}> Sign up</Link>
             </div>
 
             <div className="div-image">

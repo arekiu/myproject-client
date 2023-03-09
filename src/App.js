@@ -12,6 +12,7 @@ import OrderPage from "./pages/OrderPage";
 import EditServicesPage from "./pages/EditServicesPage"
 import AboutUsPage from "./pages/AboutUsPage"
 
+
 const API_URL = "http://localhost:5005/api";
 
  
@@ -66,7 +67,7 @@ const handleRemoveItem = (item) => {
         <Route path="/aboutus" element={<AboutUsPage/>}/>
         <Route path="/signup" element={ <SignupPage /> } />
         <Route path="/login" element={ <LoginPage /> } />
-        <Route path="/services" element={ <IsPrivate><Services services={services} 
+        <Route path="/services" element={  <IsPrivate><Services services={services} 
         getAllServices={getAllServices} handleAddItem={handleAddItem} 
         handleRemoveItem={handleRemoveItem} orderItems={orderItems}/> </IsPrivate>} />
         <Route path="/order" element={<IsPrivate> <OrderPage orderItems={orderItems} /> </IsPrivate>}/> 

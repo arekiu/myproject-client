@@ -20,11 +20,19 @@ body {
   font-size: 1.7rem;
 }
 
+.nav-link.active{
+  font-size: 1.7rem;
+  color: rgb(102, 67, 37);
+  text-decoration-line: underline;
+  text-underline-offset: 0.6rem;
+  font-weight: bold;
+}
+
 nav{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px;
+  height: 100px;
 }
 
 .divider{
@@ -37,7 +45,11 @@ nav{
 }
 
 
-/* styles for the SIGN UP */
+/* styles for the SIGN UP and LOG IN */
+
+.SignupPage, .LoginPage, .Services, .Appointment{
+  padding-top: 5vh;
+}
 
 
 .SignupPage>h1, .LoginPage>h1{
@@ -98,6 +110,7 @@ input {
 
 .links:hover{
   color: rgb(102, 67, 37);
+  text-decoration: underline;
 }
 
 .signup-content{
@@ -134,11 +147,21 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-left: 15vw;
+  padding-right: 15vw;
 }
 
 .services-container{
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+}
+
+.createservice-container{
+  margin-bottom: 50px;
+}
+.createservice-container h1 {
+  color: rgb(102, 67, 37);
 }
 
 
@@ -148,30 +171,72 @@ input {
   position: relative;
   background: white;
   border: 3px solid ;
-  box-shadow: 1px 1px 4px rgba(dark-color, 0.3);
-  width: 250px;
-  height: 350px;
+  width: 220px;
+  height: 380px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   margin: 10px;
+  border-radius: 10px;
+  border-color: rgb(102, 67, 37);
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+}
+
+.card:hover{
+  filter: none;
+  -webkit-filter: grayscale(0);
+}
+
+.card-image-container{
+  overflow: hidden;
+  height: 220px;
+  width: 220px;
 }
 
 .card-head img{
-  height: 150px;
-  width: 150px;
+ object-fit: cover;
+ width: 100%;
+ height: 100%;
+ border-top-right-radius: 10px;
+ border-top-left-radius: 10px;
+  overflow:hidden;
+  box-sizing:border-box;
 }
+
+.card-head h3{
+  margin: 20px 5px 0 5px;
+  color: rgb(102, 67, 37);
+}
+
+.card-body{
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   
+}
 .card-body p {
-  margin: 0;
+  margin: 0 5px;
+  font-size: 0.9rem;
 }
 
 .card-body h4 {
   margin: 7px;
 }
 
+.buttonselected {
+  filter: none;
+  -webkit-filter: grayscale(0);
+}
+
 
 /* CALENDARRRRRR */
+
+.Appointment{
+  padding-left: 15vw;
+  padding-right: 15vw;
+}
 
 .calendar {
   display: flex;
@@ -182,9 +247,14 @@ input {
 .date {
   flex-basis: calc(100% / 7);
   box-sizing: border-box;
-  padding: 5px;
+  padding: 10px;
   height: 70px;
   border: 1px solid #ccc;
+}
+
+.date:hover{
+  background-color: rgb(212, 211, 211);
+  color: black;
 }
 
 .header {
@@ -192,9 +262,10 @@ input {
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  background-color: #eee;
   z-index: 1;
 }
+
+
 
 .day .header .day {
   font-weight: bold;
@@ -212,20 +283,29 @@ input {
   margin-top: 10px;
   display: none;
   position: absolute;
+  margin-left: 10px;
   z-index: 2;
   background-color: white;
+  border-radius: 5px;
+  border-color: black;
 }
 
 .date:hover .time-slots {
   display: block;
+  background-color: rgb(212, 211, 211);
 }
 
 .time-slot {
   margin-bottom: 5px;
   padding: 5px;
-  background-color: #f8f8f8;
   cursor: pointer;
   z-index: 3;
+  background-color: rgb(212, 211, 211);
+  color: black;
+}
+
+.time-slot:hover{
+  background-color: green;
 }
 
  .time-slot.selected {
@@ -233,6 +313,18 @@ input {
   cursor: not-allowed;
 } 
 
+.button-red{
+  padding: 5px;
+  background-color: red;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
+.selected-time{
+  padding-bottom: 50px;
+}
 
 /* ABOUT US PAGE */
 
