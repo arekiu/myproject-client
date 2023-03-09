@@ -29,7 +29,8 @@ function Services({services, getAllServices, handleAddItem, orderItems, handleRe
 
   return (
     <div className="Services">
-
+                  {services.length>0 && (
+                    <>
                   {isAdmin && (
                     <Link className="links" to="/order" onClick={handleGoToOrderPage}>
                     Edit Calendar
@@ -81,7 +82,8 @@ function Services({services, getAllServices, handleAddItem, orderItems, handleRe
           );
         })}
       </div>
-      
+      </>
+      )}
     </div>
   );
 }
