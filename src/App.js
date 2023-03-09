@@ -13,7 +13,7 @@ import EditServicesPage from "./pages/EditServicesPage"
 import AboutUsPage from "./pages/AboutUsPage"
 
 
-const API_URL = "http://localhost:5005/api";
+const API_URL = process.env.REACT_APP_API_URL;
 
  
 function App() {
