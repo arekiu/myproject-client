@@ -21,7 +21,7 @@ function EditServicesPAge({services}) {
         useEffect(() => {
             axios
               .get(
-                `${API_URL}/api/editservices/${serviceId}`,
+                `${API_URL}/editservices/${serviceId}`,
                 { headers: { Authorization: `Bearer ${storedToken}` } }
               )
 
@@ -45,7 +45,7 @@ const handleEditSubmit = (e) => {
 
     axios
       .put(
-        `${API_URL}/api/editservices/${serviceId}`,
+        `${API_URL}/editservices/${serviceId}`,
         requestBody,
         { headers: { Authorization: `Bearer ${storedToken}` } }
       )
@@ -60,7 +60,7 @@ const handleEditSubmit = (e) => {
 
     axios
       .delete(
-        `${API_URL}/api/services/${serviceId}`,
+        `${API_URL}/services/${serviceId}`,
         { headers: { Authorization: `Bearer ${storedToken}` } }
       )       
       .then(() => navigate("/services"))

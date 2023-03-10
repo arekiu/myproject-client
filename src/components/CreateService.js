@@ -26,7 +26,7 @@ import axios from "axios";
             // req.body to .create() method when creating a new movie in '/api/movies' POST route
             uploadData.append("image", e.target.files[0]);
          
-            axios.post("http://localhost:5005/api/upload", uploadData)
+            axios.post(`${API_URL}/upload`, uploadData)
               .then(response => {
                 // console.log("response is: ", response);
                 // response carries "fileUrl" which we can use to update the state
@@ -44,7 +44,7 @@ import axios from "axios";
             // Make an axios request to the API
             // If the POST request is a successful redirect to the login page
             // If the request resolves with an error, set the error message in the state
-            axios.post(`${API_URL}/api/services`, requestBody)
+            axios.post(`${API_URL}/services`, requestBody)
             .then((response) => {
                 props.getAllServices()
                 navigate('/services');

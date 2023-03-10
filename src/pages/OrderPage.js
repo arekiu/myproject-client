@@ -47,7 +47,7 @@ function OrderPage() {
   const storeUnavailableAppointment = () => {
     const requestBody = { selectedDate,selectedTimeSlot};
 
-    axios.post(`${API_URL}/api/appointment`, requestBody)
+    axios.post(`${API_URL}/appointment`, requestBody)
     .then((response) => {
         console.log("added to unavailable:")
     })
@@ -57,14 +57,14 @@ const storeBooking = () => {
   
   const requestBody = { orderItems, selectedDate,selectedTimeSlot, userId: user._id };
 
-  axios.post(`${API_URL}/api/booking`, requestBody).then(() => {});
+  axios.post(`${API_URL}/booking`, requestBody).then(() => {});
   navigate('/mybooking')
 };
 
 
 const getUnavailable = () => {
   axios
-    .get(`${API_URL}/api/appointment`,
+    .get(`${API_URL}/appointment`,
     { headers: { Authorization: `Bearer ${storedToken}` } })
     
     .then((response) => {
