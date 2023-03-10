@@ -26,7 +26,7 @@ function App() {
  
   const getAllServices = () => {
     axios
-      .get(`${API_URL}/api/services`,
+      .get(`${API_URL}/services`,
       { headers: { Authorization: `Bearer ${storedToken}` } })
       
       .then((response) => {
