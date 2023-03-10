@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CreateService from "../components/CreateService";
 import { AuthContext } from "../context/auth.context";
 
-const API_URL = "http://localhost:5005/api";
+const API_URL = process.env.REACT_APP_API_URL
 
 function Services({services, getAllServices, handleAddItem, orderItems, handleRemoveItem}) {
   const { user, isAdmin } = useContext(AuthContext);
@@ -28,10 +28,8 @@ function Services({services, getAllServices, handleAddItem, orderItems, handleRe
 
   return (
     <div className="Services">
-
-{services.length>0 && (
+                  {services.length>0 && (
                     <>
-
                   {isAdmin && (
                     <Link className="links editCalendar" to="/order" onClick={handleGoToOrderPage}>
                     Edit Calendar
@@ -86,7 +84,8 @@ function Services({services, getAllServices, handleAddItem, orderItems, handleRe
           );
         })}
       </div>
-      </>)}
+      </>
+      )}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
-const API_URL = "http://localhost:5005/api";
+const API_URL = process.env.REACT_APP_API_URL
 
 
 function OrderPage() {
@@ -47,7 +47,7 @@ function OrderPage() {
   const storeUnavailableAppointment = () => {
     const requestBody = { selectedDate,selectedTimeSlot};
 
-    axios.post(`${API_URL}/appointment`, requestBody)
+    axios.post(`${API_URL}/api/appointment`, requestBody)
     .then((response) => {
         console.log("added to unavailable:")
     })
@@ -56,14 +56,15 @@ function OrderPage() {
 const storeBooking = () => {
   
   const requestBody = { orderItems, selectedDate,selectedTimeSlot, userId: user._id };
-  axios.post(`${API_URL}/booking`, requestBody).then(() => {});
+
+  axios.post(`${API_URL}/api/booking`, requestBody).then(() => {});
   navigate('/mybooking')
 };
 
 
 const getUnavailable = () => {
   axios
-    .get(`${API_URL}/appointment`,
+    .get(`${API_URL}/api/appointment`,
     { headers: { Authorization: `Bearer ${storedToken}` } })
     
     .then((response) => {

@@ -15,7 +15,7 @@ import Footer from "./components/Footer";
 import MyBooking from "./pages/MyBookingPage";
 
 
-const API_URL = "http://localhost:5005/api";
+const API_URL = process.env.REACT_APP_API_URL;
 
  
 function App() {
@@ -26,7 +26,7 @@ function App() {
  
   const getAllServices = () => {
     axios
-      .get(`${API_URL}/services`,
+      .get(`${API_URL}/api/services`,
       { headers: { Authorization: `Bearer ${storedToken}` } })
       
       .then((response) => {
