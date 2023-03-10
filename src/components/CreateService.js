@@ -58,8 +58,8 @@ import axios from "axios";
         
         return (
             <div className="CreateService">
-            <h1>Create or Edit service</h1>
-        
+            
+            <h3>Create or edit service</h3>
             <form onSubmit={handleCreateServiceSubmit}>
                 <label>Name:</label>
                 <input 
@@ -90,7 +90,7 @@ import axios from "axios";
                 onChange={handleDescription}
                 />
         
-                <button type="submit">Create</button>
+                <button className="button-form" type="submit">Create</button>
             </form>
         
             { errorMessage && <p className="error-message">{errorMessage}</p> }

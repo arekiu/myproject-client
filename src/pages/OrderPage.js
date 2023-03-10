@@ -1,6 +1,7 @@
 import { useState, useEffect,useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const API_URL = "http://localhost:5005/api";
@@ -8,7 +9,7 @@ const API_URL = "http://localhost:5005/api";
 
 function OrderPage() {
 
-    
+    const navigate = useNavigate();
     const { user,isAdmin} = useContext(AuthContext);
     const storedToken = localStorage.getItem("authToken");
     
@@ -35,6 +36,7 @@ function OrderPage() {
   function handleStoringBooking(date, timeSlot) {
     localStorage.setItem(`timeslot_${user._id}`, JSON.stringify(timeSlot));
     localStorage.setItem(`date_${user._id}`, JSON.stringify(date));
+    
   }
 
   useEffect(() => {
@@ -55,6 +57,7 @@ const storeBooking = () => {
   
   const requestBody = { orderItems, selectedDate,selectedTimeSlot, userId: user._id };
   axios.post(`${API_URL}/booking`, requestBody).then(() => {});
+  navigate('/mybooking')
 };
 
 
@@ -102,21 +105,22 @@ useEffect(() => {
 
     return ( 
         <div className="Appointment">
+          
           {unavailable.length > 0 && (
-
 
       <div>
         {!isAdmin && (
               <>
               <div className="selected-time">
-            <h1>Your appointment</h1>
 
-            
+            <div>
             {appointmentDate && appointmentTime ? (
-              <h3>Your appointment is on {appointmentDate.slice(5,10)} at {appointmentTime}</h3>
-                ) : <h3>Selecting date</h3>
+              <p>Date: {appointmentDate.slice(5,10)} <br/> Time: {appointmentTime}</p>
+                ) : <p>Selecting date</p>
             }
+            </div>
 
+            <div>
             {orderItems.length === 0 && (
                 <div>No items </div>
             ) }
@@ -124,15 +128,18 @@ useEffect(() => {
             <div>
                 {orderItems.map((item)=>(
                     <div key={item._id}>
-                        <h3>{item.name}</h3>
-                        <p>Price: {item.price}</p>
+                        <p> Service: {item.name} <br/> Price: {item.price}</p>
+                        
                     </div>
                 ))}
             </div>
-
-            <button onClick={() => {storeUnavailableAppointment(appointmentDate, appointmentTime);
-                  storeBooking(orderItems, selectedDate,selectedTimeSlot)}}>Confirm Appointment</button>
+            </div>
             
+            <div>
+            <button onClick={() => {storeUnavailableAppointment(appointmentDate, appointmentTime);
+                storeBooking(orderItems, selectedDate,selectedTimeSlot)}}>Confirm Appointment</button>
+            </div>
+
             </div>
             </>
             )}

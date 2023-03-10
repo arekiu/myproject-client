@@ -11,6 +11,8 @@ import IsPrivate from "./components/IsPrivate";
 import OrderPage from "./pages/OrderPage";
 import EditServicesPage from "./pages/EditServicesPage"
 import AboutUsPage from "./pages/AboutUsPage"
+import Footer from "./components/Footer";
+import MyBooking from "./pages/MyBookingPage";
 
 
 const API_URL = "http://localhost:5005/api";
@@ -72,10 +74,11 @@ const handleRemoveItem = (item) => {
         handleRemoveItem={handleRemoveItem} orderItems={orderItems}/> </IsPrivate>} />
         <Route path="/order" element={<IsPrivate> <OrderPage orderItems={orderItems} /> </IsPrivate>}/> 
         <Route path="editservices/:serviceId" element={<EditServicesPage  services={services}/> }/>
-        
+        <Route path="/mybooking" element={<MyBooking/>}/>
       
       </Routes>
 
+      <Footer/>
       
       
     </div>

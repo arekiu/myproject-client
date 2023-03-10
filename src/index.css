@@ -143,7 +143,7 @@ input {
 /* SERVICES PAGE */
 
 .Services {
-  height: 100vh;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -164,8 +164,28 @@ input {
   color: rgb(102, 67, 37);
 }
 
+.Services h2{
+  font-size: 1.3rem;
+}
+
 .Services .links {
   font-size: 1.4rem;
+}
+
+.link-book {
+  color: rgb(167, 118, 75);
+}
+
+.CreateService{
+  margin-top: 50px;
+}
+
+.CreateService button{
+  margin-top: 20px;
+}
+
+.editCalendar{
+  color: rgb(153, 27, 27);
 }
 
 /* CARDS WITH INFORMATION */
@@ -267,10 +287,6 @@ input {
   border: 1px solid #ccc;
 }
 
-.date:hover{
-  background-color: rgb(212, 211, 211);
-  color: black;
-}
 
 .header {
   display: flex;
@@ -302,12 +318,11 @@ input {
   z-index: 2;
   background-color: white;
   border-radius: 5px;
-  border-color: black;
 }
 
 .date:hover .time-slots {
   display: block;
-  background-color: rgb(212, 211, 211);
+  background-color: white;
 }
 
 .time-slot {
@@ -315,7 +330,7 @@ input {
   padding: 5px;
   cursor: pointer;
   z-index: 3;
-  background-color: rgb(212, 211, 211);
+  background-color:white;
   color: black;
 }
 
@@ -338,7 +353,31 @@ input {
 }
 
 .selected-time{
-  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("./images/galera.png");
+  background-size: 130px;
+  background-repeat: no-repeat;
+  background-position:initial;
+  margin: 0 20% ;
+  padding:20px auto;
+  margin-bottom: 80px;
+  border-radius: 5px;
+}
+
+.selected-time button{
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border-color: rgb(102, 67, 37);
+}
+
+.selected-time button:hover{
+  background-color:rgb(102, 67, 37);
+  color: white;
 }
 
 /* ABOUT US PAGE */
@@ -367,4 +406,28 @@ input {
 
 .aboutus-text span{
   font-weight: bold;
+}
+
+
+/* FOOTER */
+
+.Footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.Footer img{
+  width: 150px;
+  margin: 0 100px;
+}
+
+.footer-sep{
+  width: 80%;
+  border: 1px solid;
+  color:rgb(102, 67, 37);
+  margin-top:60px;
 }

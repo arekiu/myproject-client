@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import CreateService from "../components/CreateService";
 import { AuthContext } from "../context/auth.context";
@@ -30,16 +29,22 @@ function Services({services, getAllServices, handleAddItem, orderItems, handleRe
   return (
     <div className="Services">
 
+{services.length>0 && (
+                    <>
+
                   {isAdmin && (
-                    <Link className="links" to="/order" onClick={handleGoToOrderPage}>
+                    <Link className="links editCalendar" to="/order" onClick={handleGoToOrderPage}>
                     Edit Calendar
                   </Link>
                   )}
 
-      {!isAdmin && (            
-      <h2>Select your service and then <br/> book your time slot <Link className="links" to="/order" onClick={handleGoToOrderPage}>
+      {!isAdmin && (
+      <>
+      
+      <h2>Select your service and then <br/> book your time slot <Link className="links link-book" to="/order" onClick={handleGoToOrderPage}>
           HERE
       </Link></h2>
+      </>
       )}
       <div className="createservice-container">
         {isAdmin && <CreateService getAllServices={getAllServices} />}
@@ -81,7 +86,7 @@ function Services({services, getAllServices, handleAddItem, orderItems, handleRe
           );
         })}
       </div>
-      
+      </>)}
     </div>
   );
 }
