@@ -97,10 +97,11 @@ useEffect(() => {
   for (let i = 0; i < 28; i++) {
     const date = new Date();
     date.setDate(date.getDate() + i);
-    const day = date.toLocaleString("default", { weekday: "short" });
-    const month = date.toLocaleString("default", { month: "short" });
+    const day = date.toLocaleString("en-US", { weekday: "short" });
+    const month = date.toLocaleString("en-US", { month: "short" });
     const number = date.getDate();
     days.push({ date, day, month, number });
+
   }
 
 
@@ -181,19 +182,18 @@ useEffect(() => {
           <div className="time-slots">
             {timeSlots.map((timeSlot) => (
               <div
-                 key={timeSlot}
-                className={`time-slot ${
-                  
-                  unavailable[0].unavailable.some(object =>
-                 object.selectedDate.slice(0,10) === date.toISOString().slice(0,10) && object.selectedTimeSlot === timeSlot
-                )
-                     ? "selected"
-                     : ""
-                }`}
-                 onClick={() => {handleSelect(date, timeSlot);handleStoringBooking(date, timeSlot)}}
-              >
-                {timeSlot}
-              </div>
+              key={timeSlot}
+              className={`time-slot ${
+                unavailable[0].unavailable.some(object =>
+                  object.selectedDate.slice(0,10) === date.toISOString().slice(0,10) && object.selectedTimeSlot === timeSlot
+                ) ? "selected" : ""
+              } ${
+                date.getDay() === 0 ? "selected" : "" // add this condition to check if the day is Sunday
+              }`}
+              onClick={() => {handleSelect(date, timeSlot);handleStoringBooking(date, timeSlot)}}
+            >
+              {timeSlot}
+            </div>
             ))}
           </div>
         </div>

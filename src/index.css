@@ -314,10 +314,12 @@ input {
   margin-top: 10px;
   display: none;
   position: absolute;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   z-index: 2;
   background-color: white;
   border-radius: 5px;
+  border: 2px solid black;
+
 }
 
 .date:hover .time-slots {
