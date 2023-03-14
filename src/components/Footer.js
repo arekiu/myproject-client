@@ -16,13 +16,12 @@ function Footer() {
 
             <div className="opening">
                 <table>
-
-                    <tr>
-                        <td>Monday<br/>to<br/> Saturday   </td>
+                    <tbody>
+                        <tr>
+                        <td>Monday<br/>to<br/> Saturday</td>
                         <td>09:00 - 16:00</td>
-                    </tr>
-
-                    
+                        </tr>
+                    </tbody>
                 </table>
             </div>
 

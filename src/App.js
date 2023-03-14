@@ -13,6 +13,7 @@ import EditServicesPage from "./pages/EditServicesPage"
 import AboutUsPage from "./pages/AboutUsPage"
 import Footer from "./components/Footer";
 import MyBooking from "./pages/MyBookingPage";
+import Loading from "./components/Loading";
 
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -21,17 +22,21 @@ const API_URL = process.env.REACT_APP_API_URL;
 function App() {
   let [services, setServices] = useState([]);
   const [orderItems,setOrderItems] = useState([])
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const storedToken = localStorage.getItem("authToken");
  
   const getAllServices = () => {
     axios
       .get(`${API_URL}/services`,
-      { headers: { Authorization: `Bearer ${storedToken}` } })
+      // { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
       
       .then((response) => {
         console.log("LOS SERVICIOS SON:" ,  response.data)
-        setServices(response.data)})
+        setServices(response.data)
+        setIsLoaded(true)
+      })
       .catch((error) => console.log(error));
   };
  
@@ -40,6 +45,7 @@ function App() {
   useEffect(() => {
     getAllServices();
   }, [] );
+
 
   const handleAddItem = (item)=>{
     console.log("Adding item", item);
@@ -69,9 +75,19 @@ const handleRemoveItem = (item) => {
         <Route path="/aboutus" element={<AboutUsPage/>}/>
         <Route path="/signup" element={ <SignupPage /> } />
         <Route path="/login" element={ <LoginPage /> } />
-        <Route path="/services" element={  <IsPrivate><Services services={services} 
-        getAllServices={getAllServices} handleAddItem={handleAddItem} 
-        handleRemoveItem={handleRemoveItem} orderItems={orderItems}/> </IsPrivate>} />
+
+        <Route path="/services" element={isLoaded ? (
+  // <IsPrivate>
+    <Services services={services} 
+              getAllServices={getAllServices} 
+              handleAddItem={handleAddItem} 
+              handleRemoveItem={handleRemoveItem} 
+              orderItems={orderItems} />
+  // </IsPrivate>
+) : (
+  <Loading />
+)} />
+
         <Route path="/order" element={<IsPrivate> <OrderPage orderItems={orderItems} /> </IsPrivate>}/> 
         <Route path="editservices/:serviceId" element={<EditServicesPage  services={services}/> }/>
         <Route path="/mybooking" element={<MyBooking/>}/>
