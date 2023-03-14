@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 const API_URL = process.env.REACT_APP_API_URL
 
 const AuthContext = React.createContext();
@@ -9,6 +10,8 @@ function AuthProviderWrapper(props) {
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false)
+
+    const navigate = useNavigate();
 
     const handleLogout = () => {
       localStorage.removeItem(`orderItems_${user._id}`);
@@ -71,6 +74,8 @@ function AuthProviderWrapper(props) {
       authenticateUser();
 
       handleLogout()
+
+      navigate('/');
     } 
 
     useEffect(() => {                                    
