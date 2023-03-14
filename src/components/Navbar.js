@@ -28,7 +28,7 @@ function Navbar() {
             {isLoggedIn && (
               <>
 
-                <Link className="nav-link" onClick={logOutUser}>Log out</Link>
+                <Link className="nav-link" to="/" onClick={logOutUser}>Log out</Link>
 
 
                 {/* <span>{user.name}</span> */}
