@@ -6,7 +6,7 @@ import { AuthContext } from "../context/auth.context";
 const API_URL = process.env.REACT_APP_API_URL
 
 function Services({services, getAllServices, handleAddItem, orderItems, handleRemoveItem}) {
-  const { user, isAdmin } = useContext(AuthContext);
+  const { user, isAdmin, isLoggedIn } = useContext(AuthContext);
 
   function handleGoToOrderPage() {
     localStorage.setItem(`orderItems_${user._id}`, JSON.stringify(orderItems));
@@ -39,7 +39,7 @@ function Services({services, getAllServices, handleAddItem, orderItems, handleRe
       {!isAdmin && (
       <>
       
-      <h2>Select your service and then <br/> book your time slot <Link className="links link-book" to="/order" onClick={handleGoToOrderPage}>
+      <h2>Select your service and then <br/> book your time slot <Link className="links link-book"  to={isLoggedIn?"/order" : "/login"} onClick={handleGoToOrderPage}>
           HERE
       </Link></h2>
       </>
