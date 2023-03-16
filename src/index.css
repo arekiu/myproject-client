@@ -433,3 +433,11 @@ input {
   color:rgb(102, 67, 37);
   margin-top:60px;
 }
+
+
+
+
+/* Responsive for mobile */
+@media only screen and (max-width: 600px) {
+  
+}
